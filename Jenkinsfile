@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker stop $(docker ps -q)'
+        sh 'docker stop my-java-app || true'
         withEnv(["JAVA_HOME=/opt/jdk-18", "MAVEN_HOME=/usr/share/maven"]) { 
           sh "${env.JAVA_HOME}/bin/java -version"
           sh "${env.MAVEN_HOME}/bin/mvn --version"
