@@ -14,7 +14,7 @@ pipeline {
     }  
     stage('Deploy') {
       steps {
-        sh 'docker stop my-java-app:latest || true'
+        sh 'sh 'docker stop $(docker ps -q)' || true'
         sh 'docker run -d -p 8080:8080 --name my-java-app my-java-app'
       }
     }
