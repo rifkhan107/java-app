@@ -13,6 +13,19 @@ pipeline {
       }
     }
     
+    stage('Stop Docker Container') {
+      steps {
+        script {
+          try {
+            sh 'docker stop $(docker ps -q --filter ancestor=my-java-app:latest || true)'
+          } catch (error) {
+            echo "Error Stoping Docker Conatiner ${error}"
+          }
+        }
+      }
+    }
+
+    
     stage('Deploy') {
       steps {
         sh 'docker run -d -p 8080:8080 my-java-app'
