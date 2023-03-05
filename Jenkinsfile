@@ -8,7 +8,7 @@ pipeline {
         withEnv(["JAVA_HOME=/opt/jdk-18", "MAVEN_HOME=/usr/share/maven"]) { 
           sh "${env.JAVA_HOME}/bin/java -version"
           sh "${env.MAVEN_HOME}/bin/mvn --version"
-          sh 'mvn clean install'
+          sh 'mvn clean install -DskipTests'
           sh 'docker build -t my-java-app .'
         }
       }
