@@ -8,14 +8,14 @@ pipeline {
           sh "${env.JAVA_HOME}/bin/java -version"
           sh "${env.MAVEN_HOME}/bin/mvn --version"
           sh 'mvn clean install'
-          sh 'docker build -t my-java-app .'
+          sh 'sudo docker build -t my-java-app .'
         }
       }
     }
     
     stage('Deploy') {
       steps {
-        sh 'docker run -d -p 8080:8080 my-java-app'
+        sh 'sudo docker run -d -p 8080:8080 my-java-app'
       }
     }
   }
