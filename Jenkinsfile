@@ -14,7 +14,8 @@ pipeline {
     }  
     stage('Deploy') {
       steps {
-        sh 'docker run -d -p 8080:8080 my-java-app'
+        sh 'docker stop my-java-app || true'
+        sh 'docker run -d -p 8080:8080 --name my-java-app my-java-app'
       }
     }
   }
